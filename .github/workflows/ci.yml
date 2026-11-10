@@ -21,6 +21,7 @@ jobs:
         run: opam install . --yes --with-test --with-doc
       - name: Import installed modules outside the source tree
         run: |
+          export OPAMSWITCH="$(opam switch show)"
           cd "$RUNNER_TEMP"
           printf '%s\n' 'From MKNF Require Import Finite Syntax Semantics Algorithms MurderMystery.' > Smoke.v
           opam exec -- rocq compile Smoke.v
