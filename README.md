@@ -7,17 +7,13 @@ murder mystery.
 
 This is the package distribution repository for
 [MKNF-MBNF-Rocq](https://github.com/S-Mancl/MKNF-MBNF-Rocq).
-The source provenance and proof assumptions are recorded in
-[docs/ASSUMPTIONS.md](docs/ASSUMPTIONS.md).
+The sources are unchanged from commit
+[`ffef74a`](https://github.com/S-Mancl/MKNF-MBNF-Rocq/tree/ffef74a666c135d963038f0a41396ed28f6f6c4e).
 
 ## Requirements
 
-The supported combination is Rocq **9.1.x** with **rocq-stdlib 9.0.x**, GNU Make,
-and opam 2.x. These two Rocq packages have independent version numbers.
-The initial local validation uses Rocq 9.1.0 and stdlib 9.0.0; other release
-families are intentionally excluded until tested. There are no third-party
-Rocq library or OCaml plugin dependencies. Python 3 is needed only to prepare
-release assets.
+Requires Rocq **9.1.x**, **rocq-stdlib 9.0.x**, GNU Make, and opam 2.x.
+Python 3 is used by the release script.
 
 ## Install from this checkout
 
@@ -66,12 +62,15 @@ management. For a staged manual installation use `make install DESTDIR=/tmp/stag
 | `MKNF.Algorithms` | Entailment, countermodels, partition algorithms, correctness |
 | `MKNF.MurderMystery` | Worked reasoning example |
 
-## Releases and contributions
+The development contains no declared axioms or admitted proofs.
 
-See [docs/RELEASING.md](docs/RELEASING.md) for the complete release and
-package-index submission procedure. CI lints the opam definition, builds and
-kernel-checks proofs, generates documentation, and checks installed imports.
-For changes, run `opam lint rocq-mknf-mbnf.opam`, `make check`, and `make html`.
-Record user-visible changes in [CHANGELOG.md](CHANGELOG.md).
+## Maintenance
+
+Run `opam lint rocq-mknf-mbnf.opam`, `make check`, and `make html` before
+submitting changes. Record changes in [CHANGELOG.md](CHANGELOG.md).
+
+To prepare release files from a tag such as `v0.1.0`, run
+`python3 scripts/prepare-release.py 0.1.0`. The archive, checksum, and
+package-index entry are written to `dist/0.1.0/`.
 
 Licensed under the [MIT license](LICENSE).

@@ -57,7 +57,6 @@ def main():
     print(f"Source commit: {commit}")
     print(f"Archive: {output / filename}")
     print(f"Index entry: {entry / 'opam'}")
-    print("No files were uploaded. Follow docs/RELEASING.md to test and publish.")
 
 
 if __name__ == "__main__":
