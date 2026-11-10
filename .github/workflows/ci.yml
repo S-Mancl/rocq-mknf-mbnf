@@ -1,0 +1,28 @@
+name: Package checks
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: ocaml/setup-ocaml@v3
+        with:
+          ocaml-compiler: "4.14.2"
+      - name: Enable the Rocq package index
+        run: opam repository add rocq-released https://rocq-prover.org/opam/released
+      - name: Lint metadata
+        run: opam lint rocq-mknf-mbnf.opam
+      - name: Build, check, and install through opam
+        run: opam install . --yes --with-test --with-doc
+      - name: Import installed modules outside the source tree
+        run: |
+          cd "$RUNNER_TEMP"
+          printf '%s\n' 'From MKNF Require Import Finite Syntax Semantics Algorithms MurderMystery.' > Smoke.v
+          opam exec -- rocq compile Smoke.v
+      - name: Check package removal
+        run: opam remove rocq-mknf-mbnf --yes

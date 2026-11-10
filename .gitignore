@@ -1,0 +1,16 @@
+# Generated Rocq build products
+*.vo
+*.vos
+*.vok
+*.glob
+.*.aux
+.Makefile.rocq.d
+Makefile.rocq
+Makefile.rocq.conf
+.lia.cache
+.nia.cache
+html/
+# Release artifacts and Python caches
+dist/
+__pycache__/
+*.pyc

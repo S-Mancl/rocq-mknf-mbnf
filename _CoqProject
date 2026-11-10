@@ -1,0 +1,7 @@
+-Q theories MKNF
+
+theories/Finite.v
+theories/Syntax.v
+theories/Semantics.v
+theories/Algorithms.v
+theories/MurderMystery.v
